@@ -36,22 +36,27 @@ export default class register extends Component {
 		const {userPassword} = this.state;
 		
 		
-		fetch('https://hardeepwork.000webhostapp.com/react/register.php', {
+		fetch('http://novasyon.net/apps/accountAPI.php'
+		, {
 			method: 'post',
 			header:{
 				'Accept': 'application/json',
 				'Content-type': 'application/json'
 			},
 			body:JSON.stringify({
+				register : true,
 				name: userName,
 				email: userEmail,
 				password: userPassword,
 			})
 			
 		})
+	
 		.then((response) => response.json())
 			.then((responseJson) =>{
+				console.log(responseJson)
 				alert(responseJson);
+				console.log('hy')
 			})
 			.catch((error)=>{
 				console.error(error);
