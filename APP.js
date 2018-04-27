@@ -10,10 +10,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Navigator,
+  StackNavigator,
   NetInfo
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackStackNavigator } from 'react-navigation';
 
 import MainScene from './app/components/mainScene'
 import WordFeed from './app/components/words'
@@ -46,24 +46,24 @@ export default class UrbanDictionary extends Component {
             return(<NoConnection />);
         }else{
           return (
-            <Navigator
+            <StackNavigator
               initialRoute={{ title: 'Main', index: 0 }}
               configureScene={(route, routeStack) => {
                 if(route.title === 'Search'){
-                return Navigator.SceneConfigs.FloatFromBottom
+                return StackNavigator.SceneConfigs.FloatFromBottom
               }else{
-                return Navigator.SceneConfigs.FloatFromRight
+                return StackNavigator.SceneConfigs.FloatFromRight
                 }
               }}
 
-              renderScene={(route, navigator) => {
+              renderScene={(route, StackNavigator) => {
                 
                 if(route.title === 'Main'){
                   return (
-                  <MainScene navigator={navigator}
+                  <MainScene StackNavigator={StackNavigator}
                   
                     onPresentSearch={() => {
-                      navigator.push({
+                      StackNavigator.push({
                         title:'Search'
                       });
                     }}
@@ -77,7 +77,7 @@ export default class UrbanDictionary extends Component {
                   title={route.search}
                   feedURL={'https://api.urbandictionary.com/v0/define?term='+route.search}
                   onBack={() => {
-                        navigator.pop()
+                        StackNavigator.pop()
                     }} 
                   />
                   );
@@ -88,7 +88,7 @@ export default class UrbanDictionary extends Component {
                   title={'Word of the Day'}
                   feedURL={'https://api.urbandictionary.com/v0/words_of_the_day'}
                   onBack={() => {
-                        navigator.pop()
+                        StackNavigator.pop()
                     }} 
                   />
                   );
@@ -100,7 +100,7 @@ export default class UrbanDictionary extends Component {
                   title={'Random'}
                   feedURL={'https://api.urbandictionary.com/v0/random'}
                   onBack={() => {
-                        navigator.pop()
+                        StackNavigator.pop()
                     }} 
                   />
                   );
@@ -108,11 +108,11 @@ export default class UrbanDictionary extends Component {
               if(route.title === 'Search'){
                 return(
                 <Search 
-                  navigator={navigator}
+                  StackNavigator={StackNavigator}
                   title={'Search'}
                   title={'Random'}
                   onBack={() => {
-                        navigator.pop()
+                        StackNavigator.pop()
                     }} 
                   />
                   );

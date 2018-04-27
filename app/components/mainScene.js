@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Dimensions, StatusBar, Image, Text, Button, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -32,31 +33,31 @@ export default class mainScene extends Component {
 
     onSearchPress(){
         this.setMenuVisible(false)
-        this.props.navigator.push({
+        this.props.StackNavigator.push({
             title: 'Search'
         })
 
     }
     onButtonPress(){
-        this.props.navigator.push({
+        this.props.StackNavigator.push({
             title: 'Search'
         })
     }
     onRandomPress() {
         this.setMenuVisible(false)
-            this.props.navigator.push({
+            this.props.StackNavigator.push({
                 title:'Random'
             })
     }
     onTrendingPressed(word){
-        this.props.navigator.push({
+        this.props.StackNavigator.push({
             title: 'WoTD',
             search: word
         })
     }
     onMenuWoTDPressed(){
         this.setMenuVisible(false)
-        this.props.navigator.push({
+        this.props.StackNavigator.push({
             title:'WoTD_2'
         })
     }
