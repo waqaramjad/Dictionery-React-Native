@@ -6,11 +6,11 @@ export default class noInternet extends Component {
     render() {
         return (
             <View style={ styles.container }>
-                <Image style={styles.noInternetBackground} source={require('../resources/bgimage.png')} >
+                {/* <Image style={styles.noInternetBackground} source={require('../resources/bgimage.png')} >
                     <Image style={{resizeMode:'contain'}} source={require('../resources/tombstone.png')}/>
                     <Image style={{width:width*0.8, resizeMode:'contain'}} source={require('../resources/no_internet_text.png')}/>
 
-                </Image>
+                </Image> */}
             </View>
 
          );
