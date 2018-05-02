@@ -1,13 +1,16 @@
-import {
-  AppRegistry,
-} from 'react-native'
-import {
-  Dictionary
-} from './src/Dictionary'
+import React, {Component} from 'react';
+import { Navigation } from 'react-native-navigation';
+import { registerScreens } from './app/screens';
+import APIKEY from './api.key';
 
+registerScreens();
 
-export default  class DictionaryNative extends Dictionary {}
-
-AppRegistry.registerComponent('DictionaryNative', () => DictionaryNative)
-
-
+Navigation.startTabBasedApp({
+  tabs: [
+    {
+      screen: 'DictionaryApp.SearchPage',
+      title: ' ',
+      passProps: {apiKey: APIKEY}
+    }
+  ]
+});
