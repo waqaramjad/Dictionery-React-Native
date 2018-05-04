@@ -2,6 +2,9 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  * @flow
+ 
+ import { Navigator } from 'react-native-deprecated-custom-components'
+
  */
 
 import React, { Component } from 'react';
@@ -69,58 +72,14 @@ export default class UrbanDictionary extends Component {
                   />);
               }
 
-              if(route.title === 'WoTD'){
-                return(
-                <WordFeed 
-                  title={route.search}
-                  feedURL={'https://api.urbandictionary.com/v0/define?term='+route.search}
-                  onBack={() => {
-                        navigator.pop()
-                    }} 
-                  />
-                  );
-                }
-              if(route.title === 'WoTD_2'){
-                return(
-                <WordFeed 
-                  title={'Word of the Day'}
-                  feedURL={'https://api.urbandictionary.com/v0/words_of_the_day'}
-                  onBack={() => {
-                        navigator.pop()
-                    }} 
-                  />
-                  );
-                }
 
-              if(route.title === 'Random'){
-                return(
-                <WordFeed 
-                  title={'Random'}
-                  feedURL={'https://api.urbandictionary.com/v0/random'}
-                  onBack={() => {
-                        navigator.pop()
-                    }} 
-                  />
-                  );
-                }
-              if(route.title === 'Search'){
-                return(
-                <Search 
-                  navigator={navigator}
-                  title={'Search'}
-                  title={'Random'}
-                  onBack={() => {
-                        navigator.pop()
-                    }} 
-                  />
-                  );
-                }
                 }
               }
               />
       );
         }
       }
+      
 }
 
 const styles = StyleSheet.create({

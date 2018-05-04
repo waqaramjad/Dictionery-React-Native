@@ -1,16 +1,106 @@
-import React, {Component} from 'react';
-import { Navigation } from 'react-native-navigation';
-import { registerScreens } from './app/screens';
-import APIKEY from './api.key';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ 
+ import { Navigator } from 'react-native-deprecated-custom-components'
 
-registerScreens();
+ */
 
-Navigation.startTabBasedApp({
-  tabs: [
-    {
-      screen: 'DictionaryApp.SearchPage',
-      title: ' ',
-      passProps: {apiKey: APIKEY}
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  NetInfo
+} from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components'
+// import { NetInfo } from 'react-native-deprecated-custom-components'
+
+import MainScene from './app/components/mainScene'
+import WordFeed from './app/components/words'
+import Search from './app/components/search'
+import NoConnection from './app/components/noInternet'
+
+export default class UrbanDictionary extends Component {
+   state = {
+        isNetworkConnected: false
     }
-  ]
+    componentDidMount(){
+        NetInfo.isConnected.addEventListener('change', this.handleConnectionChange);
+        NetInfo.isConnected.fetch().then(isConnected =>{
+            {this.setState({ status: isConnected });}
+        });
+        console.log('component did mount')
+    }
+
+    componentWillUnmount() {
+        NetInfo.isConnected.removeEventListener('change', this.handleConnectionChange);
+    }
+
+    handleConnectionChange = (isConnected) => {
+        this.setState({ isNetworkConnected: isConnected });
+        console.log(`is connected: ${isConnected}`);
+    }
+
+  render() {
+        if (this.state.isNetworkConnected === false){
+            return(<NoConnection />);
+        }else{
+          return (
+            <Navigator
+              initialRoute={{ title: 'Main', index: 0 }}
+              configureScene={(route, routeStack) => {
+                if(route.title === 'Search'){
+                return Navigator.SceneConfigs.FloatFromBottom
+              }else{
+                return Navigator.SceneConfigs.FloatFromRight
+                }
+              }}
+
+              renderScene={(route, navigator) => {
+                
+                if(route.title === 'Main'){
+                  return (
+                  <MainScene navigator={navigator}
+                  
+                    onPresentSearch={() => {
+                      navigator.push({
+                        title:'Search'
+                      });
+                    }}
+
+                  />);
+              }
+
+
+                }
+              }
+              />
+      );
+        }
+      }
+      
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
 });
+
+AppRegistry.registerComponent('UrbanDictionary', () => UrbanDictionary);
