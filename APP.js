@@ -24,30 +24,30 @@ import Search from './app/components/search'
 import NoConnection from './app/components/noInternet'
 
 export default class UrbanDictionary extends Component {
-   state = {
-        isNetworkConnected: false
-    }
-    componentDidMount(){
-        NetInfo.isConnected.addEventListener('change', this.handleConnectionChange);
-        NetInfo.isConnected.fetch().then(isConnected =>{
-            {this.setState({ status: isConnected });}
-        });
-        console.log('component did mount')
-    }
+  //  state = {
+  //       isNetworkConnected: false
+  //   }
+  //   componentDidMount(){
+  //       NetInfo.isConnected.addEventListener('change', this.handleConnectionChange);
+  //       NetInfo.isConnected.fetch().then(isConnected =>{
+  //           {this.setState({ status: isConnected });}
+  //       });
+  //       console.log('component did mount')
+  //   }
 
-    componentWillUnmount() {
-        NetInfo.isConnected.removeEventListener('change', this.handleConnectionChange);
-    }
+  //   componentWillUnmount() {
+  //       NetInfo.isConnected.removeEventListener('change', this.handleConnectionChange);
+  //   }
 
-    handleConnectionChange = (isConnected) => {
-        this.setState({ isNetworkConnected: isConnected });
-        console.log(`is connected: ${isConnected}`);
-    }
+  //   handleConnectionChange = (isConnected) => {
+  //       this.setState({ isNetworkConnected: isConnected });
+  //       console.log(`is connected: ${isConnected}`);
+  //   }
 
   render() {
-        if (this.state.isNetworkConnected === false){
-            return(<NoConnection />);
-        }else{
+        // if (this.state.isNetworkConnected === false){
+        //     return(<NoConnection />);
+        // }else{
           return (
             <Navigator
               initialRoute={{ title: 'Main', index: 0 }}
@@ -82,7 +82,7 @@ export default class UrbanDictionary extends Component {
         }
       }
       
-}
+// }
 
 const styles = StyleSheet.create({
   container: {
