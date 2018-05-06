@@ -83,7 +83,7 @@ export default class wordCard extends Component {
                 <Text style={ styles.definition }> {this.props.data.definition}</Text>
                 <Text style={ styles.example }> {this.props.data.example}</Text>
                 <Text style={ styles.author}> {this.props.data.author} </Text> 
-                <View style={styles.footer}> 
+                {/* <View style={styles.footer}> 
                     <View style={styles.buttonGroup}>
                         <TouchableHighlight underlayColor='rgba(216, 216, 216, 0.5)' style={{padding:10, backgroundColor:'rgba(216, 216, 216, 0.3)', height:40}} onPress={() => this.onVotePress(this.props.data.defid, 'down')}>
                             <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
@@ -108,7 +108,7 @@ export default class wordCard extends Component {
                         </TouchableHighlight>                       
 
                     </View>
-                </View>
+                </View> */}
             </View>
          );
     }

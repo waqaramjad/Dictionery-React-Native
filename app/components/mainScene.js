@@ -6,6 +6,8 @@ import Header from'./header'
 import Search from './search'
 import Menu from './menu'
 import NoConnection from './noInternet'
+import { Navigator } from 'react-native-deprecated-custom-components'
+
 
 const {width, height} = Dimensions.get('window')
 
@@ -81,7 +83,7 @@ export default class mainScene extends Component {
     logo() {
         return(
             <View style={styles.logoContainer}> 
-                <Image style={styles.logo} source={require('../resources/IconLarge.png')} resizeMode='cover'/>
+                <Image style={styles.logo} source={require('../resources/IconLarge1.png')} resizeMode='cover'/>
             </View>
         );
     }
@@ -102,16 +104,18 @@ export default class mainScene extends Component {
     render() {
         return (
             <View style={ styles.container }>  
-                <StatusBar backgroundColor="black" barStyle="default" />
+                <StatusBar backgroundColor="green" barStyle="default" />
                 <Modal 
                     animationType={'fade'}
                     transparent={true}
                     visible={this.state.menuIsVisible}
+                    onRequestClose={()=>null}
                 > 
                 <Menu toggleMenu={() => this.setMenuVisible(!this.state.menuIsVisible)}
                     wordOfTheDay={() => this.onMenuWoTDPressed()}
                     onSearch={() => this.onSearchPress()}
                     onFeelingLucky={() => this.onRandomPress()}
+
                         />
                 </Modal>
                 {this.header()}
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
         height: 64,
     },
     logo:{
-        width:200,
+        width:400,
         height: width*0.2,
         alignItems:'center'
     },

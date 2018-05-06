@@ -95,14 +95,14 @@ const styles = StyleSheet.create({
     buttonTitle:{
         fontSize: 20,
         fontWeight: '200',
-        //fontFamily: 'Arial Rounded MT Bold',
+       // fontFamily: 'Arial Rounded MT Bold',
         textAlign: 'center',
         color: 'white',
     },
     secondaryButtonTitle:{
         fontSize: 18,
         fontWeight: '200',
-        //fontFamily: 'Arial Rounded MT Bold',
+       // fontFamily: 'Arial Rounded MT Bold',
         textAlign: 'center',
         color: 'white',
 

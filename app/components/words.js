@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 25,
         fontWeight: 'bold',
-        //fontFamily: 'Arial Rounded MT Bold',
+       // fontFamily: 'Arial Rounded MT Bold',
         textAlign: 'center',
         color: '#3498db',
         marginTop:5

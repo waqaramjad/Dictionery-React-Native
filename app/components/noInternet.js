@@ -7,9 +7,9 @@ export default class noInternet extends Component {
         return (
             <View style={ styles.container }>
                 <Image style={styles.noInternetBackground} source={require('../resources/bgimage.png')} >
-                    {/* <Image style={{resizeMode:'contain',position:'absolute'}} source={require('../resources/tombstone.png')}/>
-                    <Image style={{width:width*0.8, resizeMode:'contain',position:'absolute'}} source={require('../resources/no_internet_text.png')}/>
-  */}
+                    <Image style={{resizeMode:'contain'}} source={require('../resources/tombstone.png')}/>
+                    <Image style={{width:width*0.8, resizeMode:'contain'}} source={require('../resources/no_internet_text.png')}/>
+
                 </Image>
             </View>
 
@@ -34,7 +34,9 @@ const styles = StyleSheet.create({
         resizeMode: 'stretch',
         flexDirection:'column',
         justifyContent: 'center',
-        alignItems: 'center'       
+        alignItems: 'center' , 
+        position : 'absolute'
+
     },
 
 });
