@@ -23,6 +23,11 @@ export default class Search extends Component {
         this.setState({isRefreshing: true})
 
         fetch(url).then((response) => response.json()).then((newsItems) => {
+            console.log(url )
+            // console.log(response)
+            console.log(newsItems)
+            // console.log(url);
+
             this.setState({
                 dataSource: this
                     .state

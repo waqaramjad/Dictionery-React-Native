@@ -17,12 +17,19 @@ export default class menu extends Component {
                 <TouchableOpacity  activeOpacity={0.6} underlayColor='rgba(0,0,0,0.001)' style={styles.menuButton} onPress={this.props.wordOfTheDay}>
                     <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
                         <Icon name="trending-up" color='white' size={30}/>
-                        <Text style={styles.buttonTitle}> Word of the Day </Text>
+                        <Text style={styles.buttonTitle}> Word of the night </Text>
+                    </View>
+                </TouchableOpacity> 
+                <TouchableOpacity  activeOpacity={0.6} underlayColor='rgba(0,0,0,0.001)' style={styles.menuButton} onPress={this.props.Login}>
+                    <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+                        <Icon name="trending-up" color='white' size={30}/>
+                        <Text style={styles.buttonTitle}> Login / Sign Up </Text>
                     </View>
                 </TouchableOpacity> 
                 <TouchableOpacity  activeOpacity={0.6} underlayColor='rgba(0,0,0,0.001)' style={styles.menuButton} onPress={this.props.onFeelingLucky}>
                     <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-                        <Icon name="shuffle" color='white' size={30}/>
+                        <Icon nam
+                        e="shuffle" color='white' size={30}/>
                         <Text style={styles.buttonTitle}> I'm Feeling Lucky </Text>
                     </View>
                 </TouchableOpacity> 
