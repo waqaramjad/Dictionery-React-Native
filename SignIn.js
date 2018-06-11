@@ -69,10 +69,10 @@ export default class SignIn extends Component {
 				 // redirect to profile page
 				 alert("Successfully Login");
 				//  this.props.navigation.navigate("Profile");
-				this.props.navigator.push({
-					title: 'Search'
+				this.props.prop.navigator.push({
+					title: 'Main'
 			})
-
+		
 			 }else{
 				 alert("Wrong Login Details");
 			 }
@@ -112,7 +112,7 @@ console.log(this.props)
           </Text>
         </View>
 
-        <ButtonRoundBlue text="Enter" onPress={() => this.check()}
+        <ButtonRoundBlue text="Enter" onPress={() => this.login()}
 />
       </View>
     );

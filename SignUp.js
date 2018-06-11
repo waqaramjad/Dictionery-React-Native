@@ -39,6 +39,22 @@ export default class SignUp extends Component {
 		})
 		.then((response) => response.json())
 			.then((responseJson) =>{
+        console.log(this.state)
+        // 				this.setState({
+				// 	userName:'',
+				// 	userEmail:'', 
+				// 	userPassword:''	
+        // })
+        console.log(this.state)
+
+        console.log(this.refs)
+
+        // this.refs.Name.value = '';
+				// this.refs.Email.value = '';
+        // this.refs.Password.value = '';
+        console.log(this.refs.Name1.value)
+
+
         console.log('done')
 				alert(responseJson);
 			})
@@ -49,20 +65,21 @@ export default class SignUp extends Component {
 	}
 
   
+ 
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
           <View style={{marginTop: -20}}>
             <IconInput   onChangeText= {userName => this.setState({userName})}
- placeholder="Name" image={require("@images/icon-password.png")}/>
+ placeholder="Name" ref='Name1' image={require("@images/icon-password.png")}/>
 
             <IconInput 	  onChangeText= {userEmail => this.setState({userEmail})}
-            placeholder="Email" image={require("@images/icon-email.png")}/>
+            placeholder="Email" ref='Email' image={require("@images/icon-email.png")}/>
 
             <IconInput placeholder="Phone" image={require("@images/icon-phone.png")}/>
             
-            <IconInput  onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
+            <IconInput ref='Password' onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
           </View>
           <ButtonRoundBlue
            onPress={this.userRegister}

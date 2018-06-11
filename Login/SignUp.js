@@ -39,34 +39,52 @@ export default class SignUp extends Component {
 			})
 			
 		})
-		.then((response) => response.json())
+		// .then((response) => response.json())
+
 			.then((responseJson) =>{
-				alert(responseJson);
+				console.log('hy '+ responseJson)
+				this.refs.Name.value = '';
+				this.refs.Email.value = '';
+				this.refs.Password.value = '';
+		
+				// this.setState({
+				// 	userName:'',
+				// 	userEmail:'', 
+				// 	userPassword:''	
+				// })
+
+				// alert(responseJson);
 			})
 			.catch((error)=>{
-				console.error(error);
+				console.log('hy '+ responseJson)
+
+				this.refs.Name.value = '';
+				this.refs.Email.value = '';
+				this.refs.Password.value = '';
+
+			+98	// console.error(error);
 			});
 		
 	}
-	const styles = StyleSheet.create({
-		container: {
-			flex: 1,
-			justifyContent: 'center',
-			alignItems: 'center',
-			backgroundColor: '#F5FCFF',
-		},
-		welcome: {
-			fontSize: 20,
-			textAlign: 'center',
-			margin: 10,
-		},
-		instructions: {
-			textAlign: 'center',
-			color: '#333333',
-			marginBottom: 5,
-		},
-	});
-	
+	// const styles = StyleSheet.create({
+	// 	container: {
+	// 		flex: 1,
+	// 		justifyContent: 'center',
+	// 		alignItems: 'center',
+	// 		backgroundColor: '#F5FCFF',
+	// 	},
+	// 	welcome: {
+	// 		fontSize: 20,
+	// 		textAlign: 'center',
+	// 		margin: 10,
+	// 	},
+	// 	instructions: {
+	// 		textAlign: 'center',
+	// 		color: '#333333',
+	// 		marginBottom: 5,
+	// 	},
+	// });
+	 
 
 
 
@@ -77,14 +95,14 @@ export default class SignUp extends Component {
         <View style={styles.container}>
           <View style={{marginTop: -20}}>
             <IconInput   onChangeText= {userName => this.setState({userName})}
- placeholder="Name" image={require("@images/icon-password.png")}/>
+ placeholder="Name" ref='Name' image={require("@images/icon-password.png")}/>
 
             <IconInput 	  onChangeText= {userEmail => this.setState({userEmail})}
-            placeholder="Email" image={require("@images/icon-email.png")}/>
+            placeholder="Email" ref='Email' image={require("@images/icon-email.png")}/>
 
             <IconInput placeholder="Phone" image={require("@images/icon-phone.png")}/>
             
-            <IconInput  onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
+            <IconInput ref='Password' onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
           </View>
           <ButtonRoundBlue
            onPress={this.userRegister}
