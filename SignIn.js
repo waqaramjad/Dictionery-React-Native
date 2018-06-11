@@ -87,9 +87,9 @@ export default class SignIn extends Component {
 	}
 
 	check=()=>{
-console.log('hy'+this)
-		this.props.navigator.push({
-			title: 'Search'
+console.log(this.props)
+		this.props.prop.navigator.push({
+			title: 'Main'
 	})
 
 	}

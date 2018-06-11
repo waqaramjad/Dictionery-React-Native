@@ -19,6 +19,8 @@ export default class Login extends Component {
   }
 
   render() {
+    // console.log(this.props)
+
     const toolbar = (
       <View style={[css.toolbarMenu]}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -41,6 +43,7 @@ export default class Login extends Component {
       </View>
     )
     return (
+
       <View style={css.layout}>
         {toolbar}
         <ScrollableTabView
@@ -60,7 +63,9 @@ export default class Login extends Component {
             tabStyle={{paddingBottom: 0, borderBottomWidth: 0, paddingTop: 0, paddingLeft: 50, paddingRight: 50}}
           />}
         >
-          <SignIn tabLabel="Login"/>
+          <SignIn  tabLabel="Login"
+          prop={this.props}
+          />
           <SignUp tabLabel="Sign Up"/>
         </ScrollableTabView>
       </View>

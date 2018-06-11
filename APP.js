@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Navigator } from 'react-native-deprecated-custom-components'
 
+import SignIn from './SignIn'
 import MainScene from './app/components/mainScene'
 import WordFeed from './app/components/words'
 import Search from './app/components/search'
@@ -28,11 +29,34 @@ export default class UrbanDictionary extends Component {
                 }
               }}
 
+
+            
+
+
               renderScene={(route, navigator) => {
-                
+              //   if(route.title === 'Main'){
+              //     return (
+              //       <SignIn navigator={navigator} 
+              //       onPresentSearch={() => {
+              //         navigator.push({
+              //           title:'Search'
+              //         });
+              //       }}
+                    
+              //       />
+                  
+              //    );
+              // }
+     
+
                 if(route.title === 'Main'){
                   return (
+
+                  
                   <MainScene navigator={navigator}
+                  
+
+
                   
                     onPresentSearch={() => {
                       navigator.push({
@@ -56,7 +80,15 @@ export default class UrbanDictionary extends Component {
                 }
               if(route.title === 'Login'){
                 return(
-                  <Login/>
+                  <Login
+                  navigator={navigator}
+                    onPresentSearch={() => {
+                      navigator.push({
+                        title:'Search'
+                      });
+                    }}
+                  
+                  />
                   );
                 }
               if(route.title === 'WoTD_2'){
