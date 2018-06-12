@@ -23,7 +23,11 @@ export default class SignUp extends Component {
 		const {userEmail} = this.state;
 		const {userPassword} = this.state;
 		
-		
+		console.log(JSON.stringify({
+      name: userName,
+      email: userEmail,
+      password: userPassword,
+    }))
 		fetch('https://hardeepwork.000webhostapp.com/react/register.php', {
 			method: 'post',
 			header:{
@@ -77,13 +81,13 @@ export default class SignUp extends Component {
             <IconInput 	  onChangeText= {userEmail => this.setState({userEmail})}
             placeholder="Email" ref='Email' image={require("@images/icon-email.png")}/>
 
-            <IconInput placeholder="Phone" image={require("@images/icon-phone.png")}/>
+           
             
             <IconInput ref='Password' onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
           </View>
           <ButtonRoundBlue
            onPress={this.userRegister}
-            text="osidjoiRegistration"/>
+            text="Registration"/>
 
           <Text style={{color: 'white', opacity: 0.7, marginRight: 5, fontSize: 15}}>
             already have an account

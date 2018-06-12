@@ -50,6 +50,12 @@ export default class SignIn extends Component {
 		}
 		else{
 		
+console.log(JSON.stringify({
+	// we will pass our input data to server
+	email: userEmail,
+	password: userPassword
+}))
+
 		fetch('https://hardeepwork.000webhostapp.com/react/login.php',{
 			method:'post',
 			header:{
