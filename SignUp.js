@@ -43,15 +43,10 @@ export default class SignUp extends Component {
 		})
 		.then((response) => response.json())
 			.then((responseJson) =>{
-        console.log(this.state)
-        // 				this.setState({
-				// 	userName:'',
-				// 	userEmail:'', 
-				// 	userPassword:''	
-        // })
-        console.log(this.state)
+        // console.log(this.state)
+        // console.log(this.state)
 
-        console.log(this.refs)
+        // console.log(this.refs)
 
         // this.refs.Name.value = '';
 				// this.refs.Email.value = '';

@@ -101,7 +101,7 @@ export default class mainScene extends Component {
                 <TouchableOpacity  activeOpacity={0.6} underlayColor='rgba(0,0,0,0.001)' style={styles.feelingLucky} onPress={() => this.onRandomPress()}>
                     <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
                         <Icon name="shuffle" color='rgba(149, 165, 166,1.0)' size={30}/>
-                        <Text style={styles.buttonTitle}> I'm Feeling bad  </Text>
+                        <Text style={styles.buttonTitle}> I'm Feeling lucky   </Text>
                     </View>
                 </TouchableOpacity> 
             </View>

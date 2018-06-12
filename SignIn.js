@@ -19,15 +19,6 @@ export default class SignIn extends Component {
 	}
 
  
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     username: 'Username',
-  //     password: '',
-  //     visibleHeight: Dimensions.get('window').height,
-  //     scroll: false
-  //   };
-  // }
 
 	login = () =>{
 		const {userEmail,userPassword} = this.state;
