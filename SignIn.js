@@ -7,7 +7,7 @@ import {Actions} from "react-native-router-flux";
 import styles from "./styles";
 import {ButtonRoundBlue, IconInput}  from "@controls";
 import { Navigator } from 'react-native-deprecated-custom-components'
-
+import firebase from 'firebase';
 export default class SignIn extends Component {
  
   constructor(props){
@@ -17,6 +17,45 @@ export default class SignIn extends Component {
 			userPassword:''
 		}
 	}
+
+	 signinAction() {
+    // return dispatch => {
+        firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+            .then((signedinUser) => {
+                // console.log(signedinUser.uid)
+                // if (signedinUser.uid == 'j8HPX9vawIMc0ezcSixDHj0rzCn1') {
+
+                //     history.push('/Admin')
+
+                // }
+                // else {
+                //     firebase.database().ref('users/' + user.selectUser + '/' + signedinUser.uid).once('value')
+                //         .then((userData) => {
+                //             console.log(userData.val());
+                //             let userDataFromFirebase = userData.val()
+                //             let myData = {
+                //                 email: userDataFromFirebase.email,
+                //                 uid: userDataFromFirebase.uid,
+                //                 userName: userDataFromFirebase.username
+
+                //             }
+                //             console.log(myData)
+                //             dispatch({ type: ActionTypes.CURRENTUSERDATA, payload: myData })
+
+
+
+
+                //             history.push('/' + user.selectUser)
+
+                //         })
+                // }
+            })
+    // }
+
+}
+
+
+
 
  
 

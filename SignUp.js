@@ -5,7 +5,7 @@ import {Text, View, ScrollView, TouchableOpacity} from "react-native";
 import styles from "./styles";
 import {ButtonRoundBlue, IconInput} from "@controls";
 import {Actions} from "react-native-router-flux";
-
+import firebase from 'firebase'
 export default class SignUp extends Component {
   constructor(props){
 		super(props)
@@ -15,6 +15,61 @@ export default class SignUp extends Component {
 			userPassword:''				
 		}
 	}
+
+// firebase signup 
+check(){
+
+var a = {
+   user1 : this.state.userName,
+   email1 : this.state.userEmail,
+   pass1 : this.state.userPassword
+  
+
+
+}
+
+this.signupAction(a)
+
+}
+
+
+  signupAction(a) {
+    let uid ;
+  // return dispatch => {
+
+      // console.log(user.selectedUser)
+
+      // let user1 = this.state.userName
+      // let email1 = this.state.userEmail
+      // let pass1 = this.state.userPassword
+      // let uid ;
+
+      firebase.auth().createUserWithEmailAndPassword('amnz@sdsds.com', 'd3hfsbe7wb')
+          .then((createdUser) => {
+              // console.log('signed up successfully', user.selectedUser);
+
+              // delete user.password;
+              uid = createdUser.uid;
+              console.log(uid)
+              // firebase.database().ref('users/'  + uid + '/').set(email1)
+                  // .then(() => {
+                      // firebase.database().ref('users/').once('value')
+                      //     .then((userData) => {
+
+                      //     })
+                  // })
+
+
+          })
+
+
+
+  }
+// }
+
+
+
+
 
   userRegister = () =>{
 		//alert('ok'); // version 0.48
@@ -81,7 +136,7 @@ export default class SignUp extends Component {
             <IconInput ref='Password' onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
           </View>
           <ButtonRoundBlue
-           onPress={this.userRegister}
+           onPress={this.check()}
             text="Registration"/>
 
           <Text style={{color: 'white', opacity: 0.7, marginRight: 5, fontSize: 15}}>

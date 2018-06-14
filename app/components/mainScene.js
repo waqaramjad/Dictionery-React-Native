@@ -7,7 +7,7 @@ import Search from './search'
 import Menu from './menu'
 import NoConnection from './noInternet'
 import { Navigator } from 'react-native-deprecated-custom-components'
-
+import firebase from 'firebase';
 
 const {width, height} = Dimensions.get('window')
 

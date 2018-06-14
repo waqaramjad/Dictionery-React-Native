@@ -6,7 +6,7 @@ import ScrollableTabView, {ScrollableTabBar} from "react-native-scrollable-tab-v
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import css from "@styles/style";
-
+import firebase from 'firebase';
 export default class Login extends Component {
   constructor(props) {
     super(props);
