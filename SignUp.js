@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {Component} from "react";
-import {Text, View, ScrollView, TouchableOpacity} from "react-native";
+import {Text, View, ScrollView, TouchableOpacity , Button} from "react-native";
 import styles from "./styles";
 import {ButtonRoundBlue, IconInput} from "@controls";
 import {Actions} from "react-native-router-flux";
@@ -135,9 +135,16 @@ this.signupAction(a)
             
             <IconInput ref='Password' onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
           </View>
-          <ButtonRoundBlue
+          {/* <ButtonRoundBlue
            onPress={this.check()}
-            text="Registration"/>
+            text="Registration"/> */}
+
+<Button
+ onPress={this.check()}
+ title="Registration"
+  color="#841584"
+  // accessibilityLabel="Learn more about this purple button"
+/>
 
           <Text style={{color: 'white', opacity: 0.7, marginRight: 5, fontSize: 15}}>
             already have an account

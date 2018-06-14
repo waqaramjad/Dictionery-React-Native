@@ -64,7 +64,7 @@ export default class Login extends Component {
           />}
         >
           <SignIn  tabLabel="Login"
-          prop={this.props}
+          // prop={this.props}
           />
           <SignUp tabLabel="Sign Up"/>
         </ScrollableTabView>
