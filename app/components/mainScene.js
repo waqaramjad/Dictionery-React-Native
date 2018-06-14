@@ -33,7 +33,7 @@ export default class mainScene extends Component {
     }
 
     onSearchPress(){
-        console.log(this.props)
+        // console.log(this.props)
         this.setMenuVisible(false)
         this.props.navigator.push({
             title: 'Search'
