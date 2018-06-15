@@ -1,32 +1,11 @@
 'use strict';
 
 import React, {Component} from "react";
-import {Text, View, ScrollView, TouchableOpacity , Button} from "react-native";
+import {Text, View, ScrollView, TouchableOpacity} from "react-native";
 import styles from "./styles";
 import {ButtonRoundBlue, IconInput} from "@controls";
 import {Actions} from "react-native-router-flux";
 import firebase from 'firebase'
-
-
-function check(){
-console.log('fail')  
-  // firebase.auth().createUserWithEmailAndPassword('amnz@sdsds.com', 'd3hfsbe7wb')
-  // .then((createdUser) => {
-
-  //     // console.log('signed up successfully', user.selectedUser);
-
-  //     // delete user.password;
-  //     uid = createdUser.uid;
-  //     console.log(uid)
-  // }).catch((err)=>{
-  //                       console.log(err)
-  //                       alert(err.message)
-                        
-  //                   })
-
-
-
-}
 export default class SignUp extends Component {
   constructor(props){
 		super(props)
@@ -54,48 +33,53 @@ export default class SignUp extends Component {
 // }
 
 
-  signupAction() {
+   signupAction = () => {
     let uid ;
-  // return dispatch => {
-console.log('hy')
-      // console.log(user.selectedUser)
+    // return dispatch => {
+  console.log('hy')
+        // console.log(user.selectedUser)
+  
+        // let user1 = this.state.userName
+        // let email1 = this.state.userEmail
+        // let pass1 = this.state.userPassword
+        // let uid ;
 
-      let user1 = this.state.userName
-      let email1 = this.state.userEmail
-      let pass1 = this.state.userPassword
-      let uid ;
+        const {userName} = this.state;
+        const {userEmail} = this.state;
+        const {userPassword} = this.state;
 
-      var obj = {
-
-        name : user1,
-        mail : email1,
-        pass : pass1
-      }
-
-      firebase.auth().createUserWithEmailAndPassword(email1,pass1)
-          .then((createdUser) => {
-              console.log('signed up successfully');
-
-              // delete user.password;
-              uid = createdUser.uid;
-              console.log(uid)
-              firebase.database().ref('users/'  + uid + '/').set(obj)
-                  .then(() => {
-                      // firebase.database().ref('users/').once('value')
-                      //     .then((userData) => {
-
-                      //     })
-                  })
-
-
-          }).catch((err)=>{
-            console.log(err)
-            alert(err.message)
-            
-        })
-
-
-
+        console.log(userName)
+    
+  
+        // var obj = {
+  
+        //   // name : user1,
+        //   mail : email1,
+        //   pass : pass1
+        // }
+  
+        firebase.auth().createUserWithEmailAndPassword(userEmail,userPassword)
+            .then((createdUser) => {
+                alert('signed up successfully');
+  
+                // delete user.password;
+                // uid = createdUser.uid;
+                // console.log(uid)
+                firebase.database().ref('users/'  ).set(userEmail)
+                    .then(() => {
+                        // firebase.database().ref('users/').once('value')
+                        //     .then((userData) => {
+  
+                        //     })
+                    })
+  
+  
+            }).catch((err)=>{
+              console.log(err)
+              alert(err.message)
+              
+          })
+  
   }
 // }
 
@@ -105,7 +89,7 @@ console.log('hy')
 
   userRegister = () =>{
 		//alert('ok'); // version 0.48
-		console.log('pass')
+		
 		const {userName} = this.state;
 		const {userEmail} = this.state;
 		const {userPassword} = this.state;
@@ -158,30 +142,23 @@ console.log('hy')
         <View style={styles.container}>
           <View style={{marginTop: -20}}>
             <IconInput   onChangeText= {userName => this.setState({userName})}
- placeholder="Name" ref='Name1' image={require("@images/icon-password.png")}/>
+ placeholder="Name" image={require("@images/icon-password.png")}/>
 
             <IconInput 	  onChangeText= {userEmail => this.setState({userEmail})}
-            placeholder="Email" ref='Email' image={require("@images/icon-email.png")}/>
+            placeholder="Email" image={require("@images/icon-email.png")}/>
 
            
             
-            <IconInput ref='Password' onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
+            <IconInput  onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
           </View>
-          {/* <ButtonRoundBlue
-           onPress={this.check()}
-            text="Registration"/> */}
-
-<Button
- onPress={this.signupAction()}
- title="Registration"
-  color="#841584"
-  // accessibilityLabel="Learn more about this purple button"
-/>
+          <ButtonRoundBlue
+           onPress={this.signupAction}
+            text="Registration"/>
 
           <Text style={{color: 'white', opacity: 0.7, marginRight: 5, fontSize: 15}}>
             already have an account
           </Text>
-          <TouchableOpacity onPress={this.userRegister} style={{alignSelf: 'flex-end', marginRight: 15}}>
+          <TouchableOpacity onPress={this.signupAction} style={{alignSelf: 'flex-end', marginRight: 15}}>
             <Text style={styles.registerLink}>
               Sign in now
             </Text>

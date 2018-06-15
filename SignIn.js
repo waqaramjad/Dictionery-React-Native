@@ -18,14 +18,16 @@ export default class SignIn extends Component {
 		}
 	}
 
-	 signinAction() {
+	 signinAction = () => {
     // return dispatch => {
+			const {userEmail,userPassword} = this.state;
 
-			let email1 = this.state.userEmail
-      let pass1 = this.state.userPassword
- 
-        firebase.auth().signInWithEmailAndPassword(email1,pass1)
+			console.log('done')
+        firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
             .then((signedinUser) => {
+							alert('Login Success')
+							console.log('done 2')
+
                 // console.log(signedinUser.uid)
                 // if (signedinUser.uid == 'j8HPX9vawIMc0ezcSixDHj0rzCn1') {
 
@@ -54,9 +56,10 @@ export default class SignIn extends Component {
                 //         })
                 // }
             }).catch((err)=>{
+              console.log(err)
 							alert(err.message)
-							return {type : null};
-					})
+						})
+
     // }
 
 }
@@ -130,10 +133,12 @@ console.log(JSON.stringify({
 	}
 
 	check=()=>{
-console.log(this.props)
-		this.props.prop.navigator.push({
-			title: 'Main'
-	})
+
+
+console.log('hy wh')
+// 		this.props.prop.navigator.push({
+// 			title: 'Main'
+// 	})
 
 	}
 
@@ -155,7 +160,7 @@ console.log(this.props)
           </Text>
         </View>
 
-        <ButtonRoundBlue text="Enter" onPress={() => this.login()}
+        <ButtonRoundBlue text="Enter" onPress={() => this.signinAction()}
 />
       </View>
     );
