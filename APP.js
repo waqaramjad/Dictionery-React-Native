@@ -1,143 +1,238 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+// import React, { Component } from 'react';
+// import {
+//   AppRegistry,
+//   StyleSheet,
+//   Text,
+//   View,
+  
+//   NetInfo
+// } from 'react-native';
+// import { Navigator } from 'react-native-deprecated-custom-components'
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View, TextInput, TouchableOpacity
-} from 'react-native';
-import AuthAction from './src/store/actions/authAction'
-import { connect } from "react-redux";
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu TouchableOpacity for dev menu',
-});
+// import SignIn from './SignIn'
+// import MainScene from './app/components/mainScene'
+// import WordFeed from './app/components/words'
+// import Search from './app/components/search'
+// import NoConnection from './app/components/noInternet'
+// import Login from './loginSignup'
 
-type Props = {};
-class App extends Component<Props> {
-  constructor() {
-    super();
+// export default class UrbanDictionary extends Component {
+//   render() {
+//           return (
+//             <Navigator
+//               initialRoute={{ title: 'Main', index: 0 }}
+//               configureScene={(route, routeStack) => {
+//                 if(route.title === 'Search'){
+//                 return Navigator.SceneConfigs.FloatFromBottom
+//               }else{
+//                 return Navigator.SceneConfigs.FloatFromRight
+//                 }
+//               }}
+
+
+            
+
+
+//               renderScene={(route, navigator) => {
+//               //   if(route.title === 'Main'){
+//               //     return (
+//               //       <SignIn navigator={navigator} 
+//               //       onPresentSearch={() => {
+//               //         navigator.push({
+//               //           title:'Search'
+//               //         });
+//               //       }}
+                    
+//               //       />
+                  
+//               //    );
+//               // }
+     
+
+//                 if(route.title === 'Main'){
+//                   return (
+
+                  
+//                   <MainScene navigator={navigator}
+                  
+
+
+                  
+//                     onPresentSearch={() => {
+//                       navigator.push({
+//                         title:'Search'
+//                       });
+//                     }}
+
+//                   />);
+//               }
+
+//               if(route.title === 'WoTD'){
+//                 return(
+//                 <WordFeed 
+//                   title={route.search}
+//                   feedURL={'https://api.urbandictionary.com/v0/define?term='+route.search}
+//                   onBack={() => {
+//                         navigator.pop()
+//                     }} 
+//                   />
+//                   );
+//                 }
+//               if(route.title === 'Login'){
+//                 return(
+//                   <Login
+//                   navigator={navigator}
+//                     onPresentSearch={() => {
+//                       navigator.push({
+//                         title:'Search'
+//                       });
+//                     }}
+                  
+//                   />
+//                   );
+//                 }
+//               if(route.title === 'WoTD_2'){
+//                 return(
+//                 <WordFeed 
+//                   title={'Word of the Day'}
+//                   feedURL={'https://api.urbandictionary.com/v0/words_of_the_day'}
+//                   onBack={() => {
+//                         navigator.pop()
+//                     }} 
+//                   />
+//                   );
+//                 }
+
+//               if(route.title === 'Random'){
+//                 return(
+//                 <WordFeed 
+//                   title={'Random'}
+//                   feedURL={'https://api.urbandictionary.com/v0/random'}
+//                   onBack={() => {
+//                         navigator.pop()
+//                     }} 
+//                   />
+//                   );
+//                 }
+//               if(route.title === 'Search'){
+//                 return(
+//                 <Search 
+//                   navigator={navigator}
+//                   title={'Search'}
+//                   title={'Random'}
+//                   onBack={() => {
+//                         navigator.pop()
+//                     }} 
+//                   />
+//                   );
+//                 }
+//                 }
+//               }
+//               />
+//       );
+//         }
+//       }
+// // }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#F5FCFF',
+//   },
+//   welcome: {
+//     fontSize: 30,
+//     textAlign: 'center',
+//     margin: 10,
+//   },
+//   instructions: {
+//     textAlign: 'center',
+//     color: '#333333',
+//     marginBottom: 5,
+//   },
+// });
+
+// AppRegistry.registerComponent('UrbanDictionary', () => UrbanDictionary);
+
+var config = {
+  apiKey: "AIzaSyDcyZcVQP8nuHcMJsKd5wHxoaerUW6apZQ",
+  authDomain: "waqarchatapp.firebaseapp.com",
+  databaseURL: "https://waqarchatapp.firebaseio.com",
+  projectId: "waqarchatapp",
+  storageBucket: "waqarchatapp.appspot.com",
+  messagingSenderId: "676235345078"
+};
+firebase.initializeApp(config);
+
+
+'use strict';
+import firebase from 'firebase';
+import React, {Component} from "react";
+import {View, Image, TouchableOpacity, Dimensions,} from "react-native";
+import {Actions} from "react-native-router-flux";
+import ScrollableTabView, {ScrollableTabBar} from "react-native-scrollable-tab-view";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import css from "@styles/style";
+
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      email: '',
+      username: '',
       password: '',
-      registerShow: false
-    }
+      visibleHeight: Dimensions.get('window').height,
+      scroll: false
+    };
   }
+
   render() {
+    const toolbar = (
+      <View style={[css.toolbarMenu]}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity onPress={Actions.product}>
+            <Image source={require('@images/icon-back.png')}
+                   style={[css.imageIconLarge, {marginLeft: 8, width: 14}]}/>
+          </TouchableOpacity>
+        </View>
+
+        <View style={css.rowCenter}>
+          <Image style={css.logo} source={require('@images/beologo.png')}/>
+        </View>
+
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity onPress={Actions.cart}>
+            <Image source={require('@images/icon-bag.png')}
+                   style={[css.imageIconLarge, {marginRight: 8}]}/>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
     return (
-      <View style={styles.container}>
-        {this.props.isLogin ? <View>
-          <Text>Login Successfully</Text>
-        </View> :
+      <View style={css.layout}>
+        {toolbar}
+        <ScrollableTabView
+          initialPage={0}
+          locked={false}
+          tabBarUnderlineStyle={ {height: 2, backgroundColor: "#1CAADE"}  }
 
-          <View>
-            {this.state.registerShow ? <View>
-              <Text style={styles.heading}>Register here !</Text>
-              <View>
-                <TextInput underlineColorAndroid="transparent" style={styles.inputFeild} placeholder="Email"
-                  value={this.state.email}
-                  onChangeText={(text) => { this.setState({ email: text }) }} />
-                <TextInput underlineColorAndroid="transparent" style={styles.inputFeild} placeholder="password" secureTextEntry={true}
-                  value={this.state.password} onChangeText={(text) => { this.setState({ password: text }) }} />
-                <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {
-                  this.setState({ registerShow: !this.state.registerShow })
-                }}><Text style={{ color: 'white', fontSize: 20 }}>Back</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {
-                  let emailPass = {
-                    email: this.state.email,
-                    password: this.state.password
-                  }
-                  this.props.creataUser(emailPass);
-                }} ><Text style={{ color: 'white', fontSize: 20 }}>Register</Text></TouchableOpacity>
-              </View>
-            </View> :
-              <View>
-                <Text style={styles.heading}>Access your Account</Text>
-                <TextInput underlineColorAndroid="transparent" style={styles.inputFeild} placeholder="Email"
-                  value={this.state.email}
-                  onChangeText={(text) => { this.setState({ email: text }) }} />
-                <TextInput underlineColorAndroid="transparent" style={styles.inputFeild} placeholder="password" secureTextEntry={true}
-                  value={this.state.password} onChangeText={(text) => { this.setState({ password: text }) }} />
-                <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {
-                  let emailPass = {
-                    email: this.state.email,
-                    password: this.state.password
-                  }
-                  this.props.login(emailPass)
-                }} ><Text style={{ color: 'white', fontSize: 20 }}>Login</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {
-                  this.setState({ registerShow: !this.state.registerShow, email: '', password: '' })
-                }} ><Text style={{ color: 'white', fontSize: 20 }}>Register</Text></TouchableOpacity>
-              </View>
-            }
-          </View>
-
-        }
+          tabBarActiveTextColor={"#393838"}
+          tabBarInactiveTextColor={"#B8B8B8"}
+          tabBarTextStyle={{fontWeight: 'normal', fontSize: 14}}
+          style={{backgroundColor: '#ffff'}}
+          contentProps={{backgroundColor: '#ffff', marginTop: 0}}
+          renderTabBar={() => <ScrollableTabBar
+            underlineHeight={3}
+            style={{borderBottomColor: '#eee'}}
+            tabsContainerStyle={{paddingLeft: 30, paddingRight: 30}}
+            tabStyle={{paddingBottom: 0, borderBottomWidth: 0, paddingTop: 0, paddingLeft: 50, paddingRight: 50}}
+          />}
+        >
+          <SignIn tabLabel="Login"/>
+          <SignUp tabLabel="Sign Up"/>
+        </ScrollableTabView>
       </View>
     );
   }
 }
-let mapStateToProps = (state) => {
-  return {
-    isLogin: state.AuthReducer.isLogin,
-    // registerShow: state.AuthReducer.registerShow
-  }
-}
-let mapDispatchToProps = (dispatch) => {
-  return {
-    login: (data) => { dispatch(AuthAction.loginUser(data)) },
-    creataUser: (data) => { dispatch(AuthAction.createUser(data)) },
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App)
-
-
-const styles = StyleSheet.create({
-  TouchableOpacity:
-    {
-      borderRadius: 20,
-      margin: 10,
-      borderColor: 'white',
-      borderWidth: 2,
-      backgroundColor: 'blue',
-      padding: 10
-
-    },
-  inputFeild: {
-    fontSize: 20,
-    height: 50,
-    width: 400,
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 20
-    , margin: 10
-  },
-  heading: {
-    fontSize: 36
-
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

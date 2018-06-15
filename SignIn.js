@@ -20,7 +20,11 @@ export default class SignIn extends Component {
 
 	 signinAction() {
     // return dispatch => {
-        firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+
+			let email1 = this.state.userEmail
+      let pass1 = this.state.userPassword
+ 
+        firebase.auth().signInWithEmailAndPassword(email1,pass1)
             .then((signedinUser) => {
                 // console.log(signedinUser.uid)
                 // if (signedinUser.uid == 'j8HPX9vawIMc0ezcSixDHj0rzCn1') {
@@ -49,7 +53,10 @@ export default class SignIn extends Component {
 
                 //         })
                 // }
-            })
+            }).catch((err)=>{
+							alert(err.message)
+							return {type : null};
+					})
     // }
 
 }

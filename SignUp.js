@@ -6,6 +6,27 @@ import styles from "./styles";
 import {ButtonRoundBlue, IconInput} from "@controls";
 import {Actions} from "react-native-router-flux";
 import firebase from 'firebase'
+
+
+function check(){
+console.log('fail')  
+  // firebase.auth().createUserWithEmailAndPassword('amnz@sdsds.com', 'd3hfsbe7wb')
+  // .then((createdUser) => {
+
+  //     // console.log('signed up successfully', user.selectedUser);
+
+  //     // delete user.password;
+  //     uid = createdUser.uid;
+  //     console.log(uid)
+  // }).catch((err)=>{
+  //                       console.log(err)
+  //                       alert(err.message)
+                        
+  //                   })
+
+
+
+}
 export default class SignUp extends Component {
   constructor(props){
 		super(props)
@@ -17,50 +38,61 @@ export default class SignUp extends Component {
 	}
 
 // firebase signup 
-check(){
+// check(){
 
-var a = {
-   user1 : this.state.userName,
-   email1 : this.state.userEmail,
-   pass1 : this.state.userPassword
+// var a = {
+//    user1 : this.state.userName,
+//    email1 : this.state.userEmail,
+//    pass1 : this.state.userPassword
   
 
 
-}
+// }
 
-this.signupAction(a)
+// this.signupAction(a)
 
-}
+// }
 
 
-  signupAction(a) {
+  signupAction() {
     let uid ;
   // return dispatch => {
-
+console.log('hy')
       // console.log(user.selectedUser)
 
-      // let user1 = this.state.userName
-      // let email1 = this.state.userEmail
-      // let pass1 = this.state.userPassword
-      // let uid ;
+      let user1 = this.state.userName
+      let email1 = this.state.userEmail
+      let pass1 = this.state.userPassword
+      let uid ;
 
-      firebase.auth().createUserWithEmailAndPassword('amnz@sdsds.com', 'd3hfsbe7wb')
+      var obj = {
+
+        name : user1,
+        mail : email1,
+        pass : pass1
+      }
+
+      firebase.auth().createUserWithEmailAndPassword(email1,pass1)
           .then((createdUser) => {
-              // console.log('signed up successfully', user.selectedUser);
+              console.log('signed up successfully');
 
               // delete user.password;
               uid = createdUser.uid;
               console.log(uid)
-              // firebase.database().ref('users/'  + uid + '/').set(email1)
-                  // .then(() => {
+              firebase.database().ref('users/'  + uid + '/').set(obj)
+                  .then(() => {
                       // firebase.database().ref('users/').once('value')
                       //     .then((userData) => {
 
                       //     })
-                  // })
+                  })
 
 
-          })
+          }).catch((err)=>{
+            console.log(err)
+            alert(err.message)
+            
+        })
 
 
 
@@ -73,7 +105,7 @@ this.signupAction(a)
 
   userRegister = () =>{
 		//alert('ok'); // version 0.48
-		
+		console.log('pass')
 		const {userName} = this.state;
 		const {userEmail} = this.state;
 		const {userPassword} = this.state;
@@ -140,7 +172,7 @@ this.signupAction(a)
             text="Registration"/> */}
 
 <Button
- onPress={this.check()}
+ onPress={this.signupAction()}
  title="Registration"
   color="#841584"
   // accessibilityLabel="Learn more about this purple button"
