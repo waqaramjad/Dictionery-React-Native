@@ -45,12 +45,6 @@ export default class SignIn extends Component {
 
 
 
-check= () =>{
-
-	this.props.prop.navigator.push({
-		title: 'home'
-})
-}
  
 
 	
@@ -71,7 +65,7 @@ check= () =>{
           </Text>
         </View>
 
-        <ButtonRoundBlue text="Enter" onPress={() => this.check()}
+        <ButtonRoundBlue text="Login" onPress={() => this.signinAction()}
 />
       </View>
     );

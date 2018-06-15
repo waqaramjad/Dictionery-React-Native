@@ -47,16 +47,10 @@ export default class Login extends Component {
           </TouchableOpacity>
         </View>
 
-        {/* <View style={css.rowCenter}>
-          <Image style={css.logo} source={require('@images/beologo.png')}/>
-        </View> */}
+        <View style={css.rowCenter}>
+          <Image style={css.logo} source={require('@images/key.png')}/>
+        </View>
 
-        {/* <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableOpacity onPress={Actions.cart}>
-            <Image source={require('@images/icon-bag.png')}
-                   style={[css.imageIconLarge, {marginRight: 8}]}/>
-          </TouchableOpacity>
-        </View> */}
       </View>
     )
     return (
