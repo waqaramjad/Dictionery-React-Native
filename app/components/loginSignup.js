@@ -3,9 +3,26 @@ import React, {Component} from "react";
 import {View, Image, TouchableOpacity, Dimensions,} from "react-native";
 import {Actions} from "react-native-router-flux";
 import ScrollableTabView, {ScrollableTabBar} from "react-native-scrollable-tab-view";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+import SignIn from "../container/SignIn";
+import SignUp from "../container/SignUp";
 import css from "@styles/style";
+import firebase from 'firebase';
+
+
+
+var config = {
+  apiKey: "AIzaSyDcyZcVQP8nuHcMJsKd5wHxoaerUW6apZQ",
+  authDomain: "waqarchatapp.firebaseapp.com",
+  databaseURL: "https://waqarchatapp.firebaseio.com",
+  projectId: "waqarchatapp",
+  storageBucket: "waqarchatapp.appspot.com",
+  messagingSenderId: "676235345078"
+};
+firebase.initializeApp(config);
+
+
+
+
 
 export default class Login extends Component {
   constructor(props) {

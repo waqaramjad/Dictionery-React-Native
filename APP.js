@@ -8,13 +8,14 @@ import {
   NetInfo
 } from 'react-native';
 import { Navigator } from 'react-native-deprecated-custom-components'
+import Home from './app/container/home'
 
-import SignIn from './SignIn'
+// import SignIn from './SignIn'
 // import MainScene from './app/components/mainScene'
 // import WordFeed from './app/components/words'
 // import Search from './app/components/search'
 // import NoConnection from './app/components/noInternet'
-import Login from './loginSignup'
+import Login from './app/components/loginSignup'
 
 export default class UrbanDictionary extends Component {
   render() {
@@ -34,63 +35,26 @@ export default class UrbanDictionary extends Component {
 
 
               renderScene={(route, navigator) => {
-              //   if(route.title === 'Main'){
-              //     return (
-              //       <SignIn navigator={navigator} 
-              //       onPresentSearch={() => {
-              //         navigator.push({
-              //           title:'Search'
-              //         });
-              //       }}
-                    
-              //       />
-                  
-              //    );
-              // }
-     
 
-              //   if(route.title === 'Main'){
-              //     return (
-
-                  
-              //     <MainScene navigator={navigator}
-                  
-
-
-                  
-              //       onPresentSearch={() => {
-              //         navigator.push({
-              //           title:'Search'
-              //         });
-              //       }}
-
-              //     />);
-              // }
-
-              // if(route.title === 'WoTD'){
-              //   return(
-              //   <WordFeed 
-              //     title={route.search}
-              //     feedURL={'https://api.urbandictionary.com/v0/define?term='+route.search}
-              //     onBack={() => {
-              //           navigator.pop()
-              //       }} 
-              //     />
-              //     );
-              //   }
               if(route.title === 'Login'){
                 return(
                   <Login
                   navigator={navigator}
-                    onPresentSearch={() => {
-                      navigator.push({
-                        title:'Search'
-                      });
-                    }}
                   
                   />
                   );
                 }
+
+
+              if(route.title === 'home'){
+                return(
+                  <Home
+                  navigator={navigator}
+                  
+                  />
+                  );
+                }
+
               // if(route.title === 'WoTD_2'){
               //   return(
               //   <WordFeed 
