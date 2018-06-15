@@ -12,7 +12,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      titleText: "Home Screem",
+      titleText: "Home Screen",
       bodyText: 'it my home screen .'
     };
   }
@@ -22,26 +22,17 @@ export default class Home extends Component {
       title: 'Login'
   })
   }
-   
+  
   
     render() {
       return (
+         
         <View >
-          {/* <Button
-        
-  onPress={this.check}
-  title="LogOut"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
-/> */}
-
-
-
         <Text >
-          <Text style={styles.titleText} onPress={this.onPressTitle}>
+          <Text style={styles.titleText} >
             {this.state.titleText}{'\n'}{'\n'}
           </Text>
-          <Text numberOfLines={5}>
+          <Text >
             {this.state.bodyText}
           </Text>
         </Text>
@@ -59,11 +50,7 @@ export default class Home extends Component {
       fontFamily: 'Cochin',
     },
     titleText: {
-      fontSize: 20,
+      fontSize: 30,
       fontWeight: 'bold',
     },
   });
-  
-  // skip this line if using Create React Native App
-  AppRegistry.registerComponent('TextInANest', () => TextInANest);
-  
