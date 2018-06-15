@@ -7,7 +7,8 @@ import {ButtonRoundBlue, IconInput} from "@controls";
 import {Actions} from "react-native-router-flux";
 
 export default class SignUp extends Component {
-  constructor(props){
+
+	constructor(props){
 		super(props)
 		this.state={
 			userName:'',
@@ -16,6 +17,7 @@ export default class SignUp extends Component {
 		}
 	}
 
+
   userRegister = () =>{
 		//alert('ok'); // version 0.48
 		
@@ -23,11 +25,7 @@ export default class SignUp extends Component {
 		const {userEmail} = this.state;
 		const {userPassword} = this.state;
 		
-		console.log(JSON.stringify({
-      name: userName,
-      email: userEmail,
-      password: userPassword,
-    }))
+		
 		fetch('https://hardeepwork.000webhostapp.com/react/register.php', {
 			method: 'post',
 			header:{
@@ -41,48 +39,74 @@ export default class SignUp extends Component {
 			})
 			
 		})
-		.then((response) => response.json())
+		// .then((response) => response.json())
+
 			.then((responseJson) =>{
-        // console.log(this.state)
-        // console.log(this.state)
+				console.log('hy '+ responseJson)
+				this.refs.Name.value = '';
+				this.refs.Email.value = '';
+				this.refs.Password.value = '';
+		
+				// this.setState({
+				// 	userName:'',
+				// 	userEmail:'', 
+				// 	userPassword:''	
+				// })
 
-        // console.log(this.refs)
-
-        // this.refs.Name.value = '';
-				// this.refs.Email.value = '';
-        // this.refs.Password.value = '';
-        console.log(this.refs.Name1.value)
-
-
-        console.log('done')
-				alert(responseJson);
+				// alert(responseJson);
 			})
 			.catch((error)=>{
-				console.error(error);
+				console.log('hy '+ responseJson)
+
+				this.refs.Name.value = '';
+				this.refs.Email.value = '';
+				this.refs.Password.value = '';
+
+			+98	// console.error(error);
 			});
 		
 	}
+	// const styles = StyleSheet.create({
+	// 	container: {
+	// 		flex: 1,
+	// 		justifyContent: 'center',
+	// 		alignItems: 'center',
+	// 		backgroundColor: '#F5FCFF',
+	// 	},
+	// 	welcome: {
+	// 		fontSize: 20,
+	// 		textAlign: 'center',
+	// 		margin: 10,
+	// 	},
+	// 	instructions: {
+	// 		textAlign: 'center',
+	// 		color: '#333333',
+	// 		marginBottom: 5,
+	// 	},
+	// });
+	 
 
-  
- 
+
+
+
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
           <View style={{marginTop: -20}}>
             <IconInput   onChangeText= {userName => this.setState({userName})}
- placeholder="Name" ref='Name1' image={require("@images/icon-password.png")}/>
+ placeholder="Name" ref='Name' image={require("@images/icon-password.png")}/>
 
             <IconInput 	  onChangeText= {userEmail => this.setState({userEmail})}
             placeholder="Email" ref='Email' image={require("@images/icon-email.png")}/>
 
-           
+            <IconInput placeholder="Phone" image={require("@images/icon-phone.png")}/>
             
             <IconInput ref='Password' onChangeText= {userPassword => this.setState({userPassword})} placeholder="Password" image={require("@images/icon-password.png")}/>
           </View>
           <ButtonRoundBlue
            onPress={this.userRegister}
-            text="Registration"/>
+            text="osidjoiRegistration"/>
 
           <Text style={{color: 'white', opacity: 0.7, marginRight: 5, fontSize: 15}}>
             already have an account

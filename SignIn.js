@@ -7,8 +7,6 @@ import {Actions} from "react-native-router-flux";
 import styles from "./styles";
 import {ButtonRoundBlue, IconInput}  from "@controls";
 import { Navigator } from 'react-native-deprecated-custom-components'
-import firebase from 'firebase';
-import { StackNavigator } from 'react-navigation';
 
 export default class SignIn extends Component {
  
@@ -20,31 +18,80 @@ export default class SignIn extends Component {
 		}
 	}
 
-	 signinAction = () => {
-    // return dispatch => {
-			const {userEmail,userPassword} = this.state;
-
-			console.log('done')
-        firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
-            .then((signedinUser) => {
-							alert('Login Success')
-							console.log('done 2')
-
-            }).catch((err)=>{
-              console.log(err)
-							alert(err.message)
-						})
-
-    // }
-
-}
-
-
-
-
  
 
-	
+	login = () =>{
+		const {userEmail,userPassword} = this.state;
+		let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+		if(userEmail==""){
+			//alert("Please enter Email address");
+		  this.setState({email:'Please enter Email address'})
+			
+		}
+		
+		else if(reg.test(userEmail) === false)
+		{
+		//alert("Email is Not Correct");
+		this.setState({email:'Email is Not Correct'})
+		return false;
+		  }
+
+		else if(userPassword==""){
+		this.setState({email:'Please enter password'})
+		}
+		else{
+		
+console.log(JSON.stringify({
+	// we will pass our input data to server
+	email: userEmail,
+	password: userPassword
+}))
+
+		fetch('https://hardeepwork.000webhostapp.com/react/login.php',{
+			method:'post',
+			header:{
+				'Accept': 'application/json',
+				'Content-type': 'application/json'
+			},
+			body:JSON.stringify({
+				// we will pass our input data to server
+				email: userEmail,
+				password: userPassword
+			})
+			
+		})
+		.then((response) => response.json())
+		 .then((responseJson)=>{
+			 if(responseJson == "ok"){
+				 // redirect to profile page
+				 alert("Successfully Login");
+				//  this.props.navigation.navigate("Profile");
+				this.props.prop.navigator.push({
+					title: 'Main'
+			})
+		
+			 }else{
+				 alert("Wrong Login Details");
+			 }
+		 })
+		 .catch((error)=>{
+		 console.error(error);
+		 });
+		}
+		
+		
+		// Keyboard.dismiss();
+	}
+
+	check=()=>{
+console.log(this.props)
+		this.props.prop.navigator.push({
+			title: 'Main'
+	})
+
+	}
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -62,7 +109,7 @@ export default class SignIn extends Component {
           </Text>
         </View>
 
-        <ButtonRoundBlue text="Enter" onPress={() => this.signinAction()}
+        <ButtonRoundBlue text="Enter" onPress={() => this.login()}
 />
       </View>
     );
