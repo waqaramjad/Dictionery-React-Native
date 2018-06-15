@@ -30,33 +30,6 @@ export default class SignIn extends Component {
 							alert('Login Success')
 							console.log('done 2')
 
-                // console.log(signedinUser.uid)
-                // if (signedinUser.uid == 'j8HPX9vawIMc0ezcSixDHj0rzCn1') {
-
-                //     history.push('/Admin')
-
-                // }
-                // else {
-                //     firebase.database().ref('users/' + user.selectUser + '/' + signedinUser.uid).once('value')
-                //         .then((userData) => {
-                //             console.log(userData.val());
-                //             let userDataFromFirebase = userData.val()
-                //             let myData = {
-                //                 email: userDataFromFirebase.email,
-                //                 uid: userDataFromFirebase.uid,
-                //                 userName: userDataFromFirebase.username
-
-                //             }
-                //             console.log(myData)
-                //             dispatch({ type: ActionTypes.CURRENTUSERDATA, payload: myData })
-
-
-
-
-                //             history.push('/' + user.selectUser)
-
-                //         })
-                // }
             }).catch((err)=>{
               console.log(err)
 							alert(err.message)
@@ -71,83 +44,7 @@ export default class SignIn extends Component {
 
  
 
-	login = () =>{
-		const {userEmail,userPassword} = this.state;
-		let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-		if(userEmail==""){
-			//alert("Please enter Email address");
-		  this.setState({email:'Please enter Email address'})
-			
-		}
-		
-		else if(reg.test(userEmail) === false)
-		{
-		//alert("Email is Not Correct");
-		this.setState({email:'Email is Not Correct'})
-		return false;
-		  }
-
-		else if(userPassword==""){
-		this.setState({email:'Please enter password'})
-		}
-		else{
-		
-console.log(JSON.stringify({
-	// we will pass our input data to server
-	email: userEmail,
-	password: userPassword
-}))
-
-		fetch('https://hardeepwork.000webhostapp.com/react/login.php',{
-			method:'post',
-			header:{
-				'Accept': 'application/json',
-				'Content-type': 'application/json'
-			},
-			body:JSON.stringify({
-				// we will pass our input data to server
-				email: userEmail,
-				password: userPassword
-			})
-			
-		})
-		.then((response) => response.json())
-		 .then((responseJson)=>{
-			 if(responseJson == "ok"){
-				 // redirect to profile page
-				 alert("Successfully Login");
-				//  this.props.navigation.navigate("Profile");
-				this.props.prop.navigator.push({
-					title: 'Main'
-			})
-		
-			 }else{
-				 alert("Wrong Login Details");
-			 }
-		 })
-		 .catch((error)=>{
-		 console.error(error);
-		 });
-		}
-		
-		
-		// Keyboard.dismiss();
-	}
-
-	check=()=>{
-
-
-console.log(this.props)
-
-// this.props.navigation.navigate("Profile");
-
-	// 	this.props.navigator.push({
-	// 		title: 'home'
-	// })
-
-	}
-
-
+	
   render() {
     return (
       <View style={styles.container}>
@@ -165,7 +62,7 @@ console.log(this.props)
           </Text>
         </View>
 
-        <ButtonRoundBlue text="Enter" onPress={() => this.check()}
+        <ButtonRoundBlue text="Enter" onPress={() => this.signinAction()}
 />
       </View>
     );

@@ -16,34 +16,10 @@ export default class SignUp extends Component {
 		}
 	}
 
-// firebase signup 
-// check(){
-
-// var a = {
-//    user1 : this.state.userName,
-//    email1 : this.state.userEmail,
-//    pass1 : this.state.userPassword
-  
-
-
-// }
-
-// this.signupAction(a)
-
-// }
 
 
    signupAction = () => {
     let uid ;
-    // return dispatch => {
-  console.log('hy')
-        // console.log(user.selectedUser)
-  
-        // let user1 = this.state.userName
-        // let email1 = this.state.userEmail
-        // let pass1 = this.state.userPassword
-        // let uid ;
-
         const {userName} = this.state;
         const {userEmail} = this.state;
         const {userPassword} = this.state;
@@ -51,26 +27,19 @@ export default class SignUp extends Component {
         console.log(userName)
     
   
-        // var obj = {
+        var obj = {
   
-        //   // name : user1,
-        //   mail : email1,
-        //   pass : pass1
-        // }
+          name : userName,
+          mail : userEmail,
+          pass : userPassword
+        }
   
         firebase.auth().createUserWithEmailAndPassword(userEmail,userPassword)
             .then((createdUser) => {
                 alert('signed up successfully');
   
-                // delete user.password;
-                // uid = createdUser.uid;
-                // console.log(uid)
-                firebase.database().ref('users/'  ).set(userEmail)
+                firebase.database().ref('users/'  ).set(obj)
                     .then(() => {
-                        // firebase.database().ref('users/').once('value')
-                        //     .then((userData) => {
-  
-                        //     })
                     })
   
   
@@ -87,52 +56,6 @@ export default class SignUp extends Component {
 
 
 
-  userRegister = () =>{
-		//alert('ok'); // version 0.48
-		
-		const {userName} = this.state;
-		const {userEmail} = this.state;
-		const {userPassword} = this.state;
-		
-		console.log(JSON.stringify({
-      name: userName,
-      email: userEmail,
-      password: userPassword,
-    }))
-		fetch('https://hardeepwork.000webhostapp.com/react/register.php', {
-			method: 'post',
-			header:{
-				'Accept': 'application/json',
-				'Content-type': 'application/json'
-			},
-			body:JSON.stringify({
-				name: userName,
-				email: userEmail,
-				password: userPassword,
-			})
-			
-		})
-		.then((response) => response.json())
-			.then((responseJson) =>{
-        // console.log(this.state)
-        // console.log(this.state)
-
-        // console.log(this.refs)
-
-        // this.refs.Name.value = '';
-				// this.refs.Email.value = '';
-        // this.refs.Password.value = '';
-        console.log(this.refs.Name1.value)
-
-
-        console.log('done')
-				alert(responseJson);
-			})
-			.catch((error)=>{
-				console.error(error);
-			});
-		
-	}
 
   
  
@@ -158,14 +81,14 @@ export default class SignUp extends Component {
           <Text style={{color: 'white', opacity: 0.7, marginRight: 5, fontSize: 15}}>
             already have an account
           </Text>
-          <TouchableOpacity onPress={this.signupAction} style={{alignSelf: 'flex-end', marginRight: 15}}>
+          <TouchableOpacity  style={{alignSelf: 'flex-end', marginRight: 15}}>
             <Text style={styles.registerLink}>
               Sign in now
             </Text>
           </TouchableOpacity>
 
           <Text style={{color: '#aaa', textAlign: 'center', padding: 12}}>
-            By clicking "Registration" I agree to BeoUI <Text style={{color: '#3071D0'}}>Terms of Service</Text>
+            By clicking "Registration" I agree  <Text style={{color: '#3071D0'}}>Terms of Service</Text>
           </Text>
 
         </View>
