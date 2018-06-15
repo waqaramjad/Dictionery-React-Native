@@ -8,6 +8,8 @@ import styles from "./styles";
 import {ButtonRoundBlue, IconInput}  from "@controls";
 import { Navigator } from 'react-native-deprecated-custom-components'
 import firebase from 'firebase';
+import { StackNavigator } from 'react-navigation';
+
 export default class SignIn extends Component {
  
   constructor(props){
@@ -135,10 +137,13 @@ console.log(JSON.stringify({
 	check=()=>{
 
 
-console.log('hy wh')
-// 		this.props.prop.navigator.push({
-// 			title: 'Main'
-// 	})
+console.log(this.props)
+
+// this.props.navigation.navigate("Profile");
+
+	// 	this.props.navigator.push({
+	// 		title: 'home'
+	// })
 
 	}
 
@@ -160,7 +165,7 @@ console.log('hy wh')
           </Text>
         </View>
 
-        <ButtonRoundBlue text="Enter" onPress={() => this.signinAction()}
+        <ButtonRoundBlue text="Enter" onPress={() => this.check()}
 />
       </View>
     );
